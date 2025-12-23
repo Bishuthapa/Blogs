@@ -1,6 +1,8 @@
 import mongoose from 'mongoose'
 import { DB_NAME } from '@/constant'
 
+
+
 const MongoBDURI = process.env.MONGODB_URI;
 
 if(!MongoBDURI){
