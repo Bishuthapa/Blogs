@@ -42,9 +42,15 @@ const BlogSchema = new Schema<IBlog>(
     },
 
     {
-        timestamps: true,
+        timestamps: true, // auto created the timestamp when createdAt & updatedAt
     },
 
 )
 
-const Blog = models.Blog || model<IBlog>("Blog", BlogSchema)
+
+BlogSchema.index({createdAt: -1}); /* sorts by creation data */
+BlogSchema.index({published: 1}); /* filter by publish status */
+BlogSchema.index({tags: 1}); //it will help to search by tags
+
+
+export const Blog = models.Blog || model<IBlog>("Blog", BlogSchema);
