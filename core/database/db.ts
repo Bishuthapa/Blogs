@@ -1,6 +1,6 @@
-import mongoose, { mongo } from 'mongoose'
+import mongoose from 'mongoose'
 import { DB_NAME } from '@/constant'
-import { cache } from 'react';
+
 
 const MongoBDURI = process.env.MONGODB_URI;
 if (!MongoBDURI) {
