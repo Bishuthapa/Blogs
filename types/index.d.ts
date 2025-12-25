@@ -17,3 +17,7 @@ export interface creatBlog {
     content : string,
     tags : string[]
 }
+
+export interface updateBlog extends creatBlog{
+    id : string
+}
