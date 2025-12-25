@@ -1,15 +1,6 @@
-import { Schema, model, models, type Document } from "mongoose"
+import { Schema, model, models} from "mongoose"
+import { IBlog } from "@/types";
 
-
-export interface IBlog extends Document {
-    title : string,
-    author : string,
-    content : string,
-    tags : string[],
-    published : boolean,
-    createdAt : Date,
-    updatedAt : Date
-}
 
 const BlogSchema = new Schema<IBlog>(
     {
