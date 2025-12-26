@@ -1,8 +1,8 @@
-import {type Document} from "mongoose"
+import mongoose, {type Document} from "mongoose"
 
 export interface IBlog extends Document {
     title : string,
-    author : string,
+    author : mongoose.Types.ObjectId,
     content : string,
     tags : string[],
     published : boolean,

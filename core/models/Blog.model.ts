@@ -1,4 +1,4 @@
-import { Schema, model, models} from "mongoose"
+import mongoose,{ Schema, model, models} from "mongoose"
 import { IBlog } from "@/types";
 
 
@@ -12,9 +12,9 @@ const BlogSchema = new Schema<IBlog>(
 
         },
         author:{
-            type: String,
-            required: [true, "Author is required"],
-            trim: true,
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+            required: true,
         },
         content:{
             type: String,
