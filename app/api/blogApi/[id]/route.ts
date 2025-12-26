@@ -1,4 +1,4 @@
-import { Blog } from "@/core/models/index.model";
+import { Blog } from "@/core/models/Blog.model";
 import { NextResponse } from "next/server";
 import { IBlog, updateBlog } from "@/types";
 import connectDB from "@/core/database/db";
