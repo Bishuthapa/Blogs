@@ -21,3 +21,12 @@ export interface creatBlog {
 export interface updateBlog extends creatBlog{
     id : string
 }
+
+export interface IUser extends Document {
+    username : string,
+    email : string,
+    password : string,
+    avatar? : string,
+    createdAt : Date,
+    updatedAt? : Date
+}
