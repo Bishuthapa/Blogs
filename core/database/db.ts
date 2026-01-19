@@ -71,6 +71,7 @@ export default async function connectDB(): Promise<typeof mongoose> {
 
 
 
+
 // MongoDB connection helper using Mongoose with global caching to prevent
 // multiple connections in development and serverless environments.
 // It reads MONGODB_URI from environment variables, reuses existing connections,
@@ -89,3 +90,56 @@ export default async function connectDB(): Promise<typeof mongoose> {
 // }
 
 // export default connectDB
+
+
+
+//or 
+//import mongoose from 'mongoose'
+// import { DB_NAME } from '@/constant'
+
+// const MONGODB_URI = process.env.MONGODB_URI;
+
+// if (!MONGODB_URI) {
+//     throw new Error("Please define MONGODB_URI in your .env file");
+// }
+
+// interface CachedConnection {
+//     conn: typeof mongoose | null;
+//     promise: Promise<typeof mongoose> | null;
+// }
+
+// declare global {
+//     var mongoose: CachedConnection | undefined;
+// }
+
+// const cached: CachedConnection = global.mongoose || { conn: null, promise: null };
+
+// if (!global.mongoose) {
+//     global.mongoose = cached;
+// }
+
+// export default async function connectDB(): Promise<typeof mongoose> {
+//     if (cached.conn) {
+//         return cached.conn;
+//     }
+
+//     if (!cached.promise) {
+//         const opts = {
+//             bufferCommands: false, // Fail fast if not connected
+//             dbName: DB_NAME,
+//         };
+
+//         cached.promise = mongoose.connect(MONGODB_URI, opts);
+//     }
+
+//     try {
+//         cached.conn = await cached.promise;
+//         console.log("MongoDB connected successfully");
+//     } catch (error) {
+//         cached.promise = null;
+//         console.error("MongoDB connection error:", error);
+//         throw error;
+//     }
+
+//     return cached.conn;
+// }
