@@ -30,3 +30,8 @@ export interface IUser extends Document {
     createdAt : Date,
     updatedAt? : Date
 }
+export interface SendEmailParams {
+  email: string;
+  emailType: "verify" | "reset";
+  userId: string;
+}
