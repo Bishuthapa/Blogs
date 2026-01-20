@@ -4,6 +4,7 @@ import { User } from "@/core/models/User.model"
 import { SignupSchema } from "@/validators/signupSchema";
 import { Jwt } from "jsonwebtoken";
 import bcryptjs from "bcryptjs";
+import bcrypt from "bcryptjs";
 
 
 
@@ -40,6 +41,40 @@ export async function POST(req : NextRequest){
             status: 409
         })
         }
+
+        const salt = await bcryptjs.genSalt(10);
+        const hashedPassword = await bcryptjs.hash(password , salt);
+
+        const newUser = new User ( {
+            username,
+            email,
+            password : hashedPassword
+        })
+
+        const saveUser = await newUser.save();
+
+
+        try{
+            await sendEmail({
+                email,
+                emailType : "verify",
+                userId : saveUser._id
+            })
+        }catch(emailError){
+            console.error("Email sending failed:", emailError);
+        }
+
+        return NextResponse.json({
+            success : true,
+            message: "Account created! Please check you email to verify.",
+            data: {
+                username: saveUser.username,
+                email: saveUser.email,
+            }
+        },
+    {
+        status: 201
+    })
 
     }
     catch(error : unknown){
