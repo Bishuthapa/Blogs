@@ -13,6 +13,7 @@ import { SendEmailParams } from "@/types"
 
 export const sendEmail = async() => {
     try{
+        
 
     }catch(error){
         console.error("Email error:", error);
