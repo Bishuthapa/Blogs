@@ -3,13 +3,13 @@ import { IUser } from "@/types";
 
 const UserSchema = new Schema<IUser>(
     {
-        username:{
+        username: {
             type: String,
             required: true,
             maxlength: [25, "Username cannot exceed 25 characters"],
         },
 
-        email:{
+        email: {
             type: String,
             required: [true, "Email is required"],
         },
@@ -19,10 +19,18 @@ const UserSchema = new Schema<IUser>(
             required: [true, "Password is required"],
         },
 
-        avatar: {
-            type: String,
-            default : String,
-        }
+        isVerified: {
+            type: Boolean,
+            default: false
+        },
+        isAdmine: {
+            type: Boolean,
+            default: false
+        },
+        forgetPasswordToken: String,
+        forgetPasswordTokenExpiry: Date,
+        verifyToken: String,
+        verifyTokenExpiry: Date
     },
     {
         timestamps: true
