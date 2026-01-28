@@ -5,6 +5,7 @@ import { SignupSchema } from "@/validators/signupSchema";
 import { Jwt } from "jsonwebtoken";
 import bcryptjs from "bcryptjs";
 import bcrypt from "bcryptjs";
+import { sendEmail } from "@/utils/mailer"
 
 
 
@@ -50,8 +51,9 @@ export async function POST(req : NextRequest){
             email,
             password : hashedPassword
         })
-
+        
         const saveUser = await newUser.save();
+        console.log(saveUser);
 
 
         try{
