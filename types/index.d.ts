@@ -26,6 +26,7 @@ export interface IUser extends Document {
     username : string,
     email : string,
     password : string,
+    avatar? : string,
     isVerified : boolean,
     isAdmine: boolean,
     forgetPasswordToken: string,
