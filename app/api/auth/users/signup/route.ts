@@ -2,9 +2,7 @@ import { NextRequest , NextResponse } from "next/server";
 import connectDB from "@/core/database/db"
 import { User } from "@/core/models/User.model"
 import { SignupSchema } from "@/validators/signupSchema";
-import { Jwt } from "jsonwebtoken";
 import bcryptjs from "bcryptjs";
-import bcrypt from "bcryptjs";
 import { sendEmail } from "@/utils/mailer"
 
 
