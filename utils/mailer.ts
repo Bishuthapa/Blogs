@@ -1,7 +1,7 @@
 import { User } from "@/core/models/User.model";
 import crypto from "crypto"
 import nodemailer from "nodemailer"
-import bcryptjs from "bcryptjs";
+//import bcryptjs from "bcryptjs";
 import { SendEmailParams } from "@/types"
 
 // export const sendEmail = async ({
@@ -18,8 +18,12 @@ export const sendEmail = async({
     try{
         
         const rawToken = crypto.randomBytes(32).toString("hex");
+        
 
-        const hashedToken = await bcryptjs.hash(rawToken, 10);
+        const hashedToken = crypto
+                    .createHash("sha256")
+                    .update(rawToken)
+                    .digest("hex");
 
         if(emailType === "verify"){
         await User.findByIdAndUpdate(userId, { $set: {
@@ -36,7 +40,7 @@ export const sendEmail = async({
         })
     }
 
-      if (!process.env.MAILTRAP_TOKEN) {
+      if (!process.env.MAILTRAP_TOKEN || !process.env.MAILTRAP_PASS) {
             throw new Error("MAILTRAP_API_KEY not defined");
         }
 
@@ -73,6 +77,7 @@ export const sendEmail = async({
         });
 
         console.log("Email sent:", info.messageId);
+        return {success: true};
         
         
 
