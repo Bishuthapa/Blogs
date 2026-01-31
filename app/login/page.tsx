@@ -22,7 +22,6 @@ export default function Login() {
     };
 
     const handleLogin = async (e: React.FormEvent) => {
-
         e.preventDefault();
         // Zod validation
         const result = LoginSchema.safeParse(data);
@@ -33,9 +32,8 @@ export default function Login() {
 
         setLoading(true);
 
-
         try {
-            const res = await axios.post("api/users/login", result.data);
+            const res = await axios.post("/api/auth/users/login", result.data);
 
             console.log(res.data);
             toast.success("Login successfully");
