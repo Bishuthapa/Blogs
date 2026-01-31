@@ -41,9 +41,9 @@ export default function Signup() {
 
         try {
             const res = await axios.post("/api/auth/users/signup", result.data);
-            console.log(result.data)
+            console.log(res.data)
 
-            toast.success("Account created! Check your email");
+            toast.success("Account created! Check your email to verify email");
 
             // redirect after success
             setTimeout(() => {
