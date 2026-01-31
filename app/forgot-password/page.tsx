@@ -17,7 +17,9 @@ export default function ForgotPassword() {
                 action: "forgot-password",
                 email
             });
-            toast.success(res.data.message);
+            toast.success("Email is sent check you mail and reset the password.")
+            //toast.success(res.data.message);
+            console.log(res.data);
             setEmail("");
         } catch (error) {
             if (axios.isAxiosError(error)) {
