@@ -40,21 +40,15 @@ export default function Signup() {
         setLoading(true);
 
         try {
-            const res = await axios({
-                method: "post",
-                url: "api/users/signup",
-                data: JSON.stringify(result),
-            }).then(() => {
-                toast.success("Account created! Check your email");
+            const res = await axios.post("/api/auth/users/signup", result.data);
+            console.log(result.data)
 
-                // redirect after success
-                setTimeout(() => {
-                    router.push("/login");
-                }, 1500);
-            });
-            console.log(res);
+            toast.success("Account created! Check your email");
 
-
+            // redirect after success
+            setTimeout(() => {
+                router.push("/login");
+            }, 1500);
         } catch (error) {
             if (error instanceof Error) {
                 console.error(error.message)
