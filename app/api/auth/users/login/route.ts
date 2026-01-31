@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { LoginSchema } from '@/validators/loginSchema';
-import {  ForgetPasswordSchema, ResetPasswordSchema } from "@/validators/forgotPasswordSchema"
+import { ForgetPasswordSchema, ResetPasswordSchema } from "@/validators/forgotPasswordSchema"
 import connectDB from "@/core/database/db";
 import { User } from "@/core/models/User.model";
 import jwt from "jsonwebtoken";
 import bcryptjs from "bcryptjs";
 import { sendEmail } from "@/utils/mailer";
-
+import crypto from "crypto";
 connectDB();
 
 export async function POST(req: NextRequest) {
@@ -16,25 +16,25 @@ export async function POST(req: NextRequest) {
         const body = await req.json();
         const { action } = body;
 
-        if(action === "forgot-password"){
+        if (action === "forgot-password") {
             const result = ForgetPasswordSchema.safeParse(body);
 
-            if(!result.success){
+            if (!result.success) {
                 return NextResponse.json({
                     success: false,
                     error: result.error.flatten().fieldErrors,
                 },
-            {
-                status: 400
-            });
+                    {
+                        status: 400
+                    });
             }
 
             const { email } = result.data;
 
             const user = await User.findOne({ email });
-            if(!user) {
+            if (!user) {
                 return NextResponse.json({
-                    success : true,
+                    success: true,
                     message: "If that email exists, a reset link has been sent",
                 });
             }
@@ -52,32 +52,37 @@ export async function POST(req: NextRequest) {
             });
         }
 
-        if(action === "reset-password"){
+        if (action === "reset-password") {
             const result = ResetPasswordSchema.safeParse(body);
 
-            if(!result.success){
+            if (!result.success) {
                 return NextResponse.json({
                     success: false,
                     error: result.error.flatten().fieldErrors,
                 },
-            {
-                status: 400
-            });
+                    {
+                        status: 400
+                    });
             }
 
-            const {token, password} = result.data;
+            const { token, password } = result.data;
+
+            const hashedToken = crypto
+                .createHash("sha256")
+                .update(token)
+                .digest("hex");
 
 
-            const user = await User.findOne( {
-                forgetPasswordToken : token,
-                forgetPasswordTokenExpiry: { $gt: Date.now()},
+            const user = await User.findOne({
+                forgetPasswordToken: hashedToken,
+                forgetPasswordTokenExpiry: { $gt: Date.now() },
             });
 
-            if(!user) {
+            if (!user) {
                 return NextResponse.json({
                     success: false,
                     message: "Invalid or exprired reset token",
-                },{
+                }, {
                     status: 400
                 });
             }
@@ -188,5 +193,5 @@ export async function POST(req: NextRequest) {
             {
                 status: 500
             });
-        }
     }
+}
