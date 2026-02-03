@@ -39,11 +39,9 @@ function ResetPasswordForm() {
         try {
             console.log("Resetting password with token:", token);
             
-            const res = await axios.post("/api/auth/users/login", {
-                action: "reset-password",
+            const res = await axios.post("/api/auth/reset-password", {
                 token,
                 password,
-                confirmPassword,
             });
 
             console.log("Reset response:", res.data);

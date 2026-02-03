@@ -13,8 +13,7 @@ export default function ForgotPassword() {
         setLoading(true);
 
         try {
-            const res = await axios.post("/api/auth/users/login", {
-                action: "forgot-password",
+            const res = await axios.post("/api/auth/forgot-password", {
                 email
             });
             toast.success("Email is sent check you mail and reset the password.")

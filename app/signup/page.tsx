@@ -40,7 +40,7 @@ export default function Signup() {
         setLoading(true);
 
         try {
-            const res = await axios.post("/api/auth/users/signup", result.data);
+            const res = await axios.post("/api/auth/signup", result.data);
             console.log(res.data)
 
             toast.success("Account created! Check your email to verify email");

@@ -1,5 +1,5 @@
 import { NextRequest , NextResponse } from "next/server";
-import connectDB from "@/core/database/db"
+import connectDB from "@/lib/db"
 import { User } from "@/core/models/User.model"
 import { SignupSchema } from "@/validators/signupSchema";
 import bcryptjs from "bcryptjs";
@@ -88,5 +88,4 @@ export async function POST(req : NextRequest){
     });
     }
 }
-
 

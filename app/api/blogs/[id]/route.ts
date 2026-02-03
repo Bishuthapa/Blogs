@@ -1,7 +1,7 @@
 import { Blog } from "@/core/models/Blog.model";
 import { NextResponse } from "next/server";
 import { IBlog, updateBlog } from "@/types";
-import connectDB from "@/core/database/db";
+import connectDB from "@/lib/db";
 import mongoose from "mongoose";
 import { ApiError } from "next/dist/server/api-utils";
 
@@ -146,4 +146,3 @@ export async function DELETE(request: Request, { params }: { params: { id: strin
         }
 
 }
-    

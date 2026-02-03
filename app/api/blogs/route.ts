@@ -2,7 +2,7 @@ import { Blog } from "@/core/models/Blog.model"
 import {  NextResponse } from "next/server"
 import { IBlog, creatBlog } from "@/types";
 import { ObjectId } from "mongodb";
-import connectDB from "@/core/database/db";
+import connectDB from "@/lib/db";
 
 export async function GET(): Promise<NextResponse<IBlog[] | {error: unknown}>> {
 
@@ -21,6 +21,7 @@ catch(e){
             status: 500
         }
     )
+
 }
 
 }
