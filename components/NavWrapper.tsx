@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import NavBar from "./navBar";
 
-const HIDDEN_NAV_PATHS = ["/login", "/signup"];
+const HIDDEN_NAV_PATHS = ["/login", "/signup", "/forgot-password", "/reset-password", "/verify-email"];
 
 export default function NavWrapper() {
   const pathname = usePathname();

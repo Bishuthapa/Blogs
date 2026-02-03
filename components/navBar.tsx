@@ -1,10 +1,22 @@
-export default function NavBar(){
-    return(
-        <> 
-        <div className="text-2xl flex justify-items-center-safe mb-6 bg-gray-600">
-            <a href="/profile" className="px-3" >Home</a>
-            <a className="px-3">About</a>
+"use client";
+
+import ThemeToggle from "./ThemeToggle";
+
+export default function NavBar() {
+  return (
+    <nav className="border-b border-black/10 bg-[var(--background)] text-[var(--foreground)] dark:border-white/10">
+      <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 text-base">
+        <a href="/profile" className="font-semibold tracking-wide hover:opacity-80">
+          MyBlog
+        </a>
+        <div className="flex items-center gap-4">
+          <a href="/profile" className="hover:underline">
+            Home
+          </a>
+          <a className="hover:underline">About</a>
         </div>
-        </>
-    )
+        <ThemeToggle />
+      </div>
+    </nav>
+  );
 }
