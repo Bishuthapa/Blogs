@@ -6,13 +6,13 @@ export function middleware(request: NextRequest) {
 
     // Protected routes that require authentication
     const protectedRoutes = ["/profile"];
-    const isProtectedRoute = protectedRoutes.some(route => 
+    const isProtectedRoute = protectedRoutes.some(route =>
         request.nextUrl.pathname.startsWith(route)
     );
 
     // Auth routes that should redirect if already logged in
     const authRoutes = ["/login", "/signup"];
-    const isAuthRoute = authRoutes.some(route => 
+    const isAuthRoute = authRoutes.some(route =>
         request.nextUrl.pathname.startsWith(route)
     );
 

@@ -5,7 +5,7 @@ import { User } from "@/core/models/User.model";
 import jwt from "jsonwebtoken";
 import bcryptjs from "bcryptjs";
 
-connectDB();
+await connectDB();
 
 export async function POST(req: NextRequest) {
 
