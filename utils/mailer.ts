@@ -57,7 +57,7 @@ export const sendEmail = async({
         const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
         const link =
             emailType === "verify"
-                ? `${baseUrl}/verifyemail?token=${rawToken}`
+                ? `${baseUrl}/verify-email?token=${rawToken}`
                 : `${baseUrl}/reset-password?token=${rawToken}`;
 
         // 6️⃣ Send email

@@ -29,7 +29,7 @@ export default function Login() {
         setLoading(true);
 
         try {
-            const res = await axios.post("/api/auth/users/login", result.data);
+            const res = await axios.post("/api/auth/login", result.data);
 
             console.log(res.data);
             toast.success("Login successfully");
