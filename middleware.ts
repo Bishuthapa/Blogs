@@ -5,7 +5,7 @@ export function middleware(request: NextRequest) {
     const token = request.cookies.get("token")?.value;
 
     // Protected routes that require authentication
-    const protectedRoutes = ["/profile"];
+    const protectedRoutes = ["/profile","/home"];
     const isProtectedRoute = protectedRoutes.some(route =>
         request.nextUrl.pathname.startsWith(route)
     );
