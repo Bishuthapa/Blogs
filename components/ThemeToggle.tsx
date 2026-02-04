@@ -146,8 +146,7 @@ export default function ThemeToggle() {
       type="button"
       onClick={handleToggle}
       aria-label="Toggle dark mode"
-      className="rounded-full p-2 bg-gray-200 dark:bg-gray-900 text-gray-800 dark:text-white hover:bg-gray-800 dark:hover:bg-gray-800 h-9 w-9 flex items-center justify-center transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-800"
-    >
+      >
       <span className="sr-only">Toggle theme</span>
 
       <div className="relative h-5 w-5">

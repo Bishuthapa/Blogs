@@ -1,19 +1,25 @@
 "use client";
 
+import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
 
 export default function NavBar() {
   return (
     <nav>
       <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 text-base">
-        <a href="/profile" className="font-semibold tracking-wide hover:opacity-80">
+        <Link
+          href="/profile"
+          className="font-semibold tracking-wide hover:opacity-80"
+        >
           MyBlog
-        </a>
+        </Link>
         <div className="flex items-center gap-4">
-          <a href="/profile" className="hover:underline">
+          <Link href="/home" className="hover:underline">
             Home
-          </a>
-          <a className="hover:underline">About</a>
+          </Link>
+          <Link href="/profile" className="hover:underline">
+            Profile
+          </Link>
         </div>
         <ThemeToggle />
       </div>
