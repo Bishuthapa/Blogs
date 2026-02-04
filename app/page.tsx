@@ -1,7 +1,7 @@
-export default function Home() {
+export default function Welcome() {
   return (
-    <div className="flex min-h-screen items-center justify-center font-sans">
-      Try something and return
-    </div>
+    <>
+      <p>Hello</p>
+    </>
   );
 }
