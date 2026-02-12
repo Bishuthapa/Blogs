@@ -1,7 +1,31 @@
-export default function Home(){
-    return(
+export default function Home() {
+    return (
         <>
-            Home page    
+            <div className=" bg-amber-600">
+                
+
+
+                <div className="w-64">
+                    Home page is on contruction;
+                    asd
+                    Home page is on contruction;
+                    asd
+                    Home page is on contruction;
+                    asd
+                    Home page is on contruction;
+                    asd
+                    Home page is on contruction;
+                    asd
+                    Home page is on contruction;
+                    asd
+                    Home page is on contruction;
+                    asd
+                    Home page is on contruction;
+                    asd
+
+
+                </div>
+            </div>
         </>
     )
 }
