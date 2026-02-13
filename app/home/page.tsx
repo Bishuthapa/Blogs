@@ -1,7 +1,13 @@
+import UnderDevelopment from "@/components/under-construction";
+
 export default function Home() {
-    return (
+
+    //const isLive = true;
+    const isLive = false;
+
+    return isLive ?  (
         <>
-            <div className=" bg-amber-600">
+            <div className="  bg-sky-600 rounded-4xl px-4 py-2 mx-4 flex justify-center iten-center">
                 
 
 
@@ -27,5 +33,5 @@ export default function Home() {
                 </div>
             </div>
         </>
-    )
+    ) : <UnderDevelopment />
 }
