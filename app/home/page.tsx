@@ -1,37 +1,26 @@
 import UnderDevelopment from "@/components/under-construction";
+import axios from "axios";
 
-export default function Home() {
+export default  async function Home(){
+  
+  const isLive = true;
+  const res = await axios.get("http://localhost:3000/api/blogs");
 
-    //const isLive = true;
-    const isLive = false;
+  console.log("res", res);
 
-    return isLive ?  (
-        <>
-            <div className="  bg-sky-600 rounded-4xl px-4 py-2 mx-4 flex justify-center iten-center">
-                
-
-
-                <div className="w-64">
-                    Home page is on contruction;
-                    asd
-                    Home page is on contruction;
-                    asd
-                    Home page is on contruction;
-                    asd
-                    Home page is on contruction;
-                    asd
-                    Home page is on contruction;
-                    asd
-                    Home page is on contruction;
-                    asd
-                    Home page is on contruction;
-                    asd
-                    Home page is on contruction;
-                    asd
-
-
-                </div>
-            </div>
-        </>
-    ) : <UnderDevelopment />
+  return isLive ?  (
+    <>
+    <p>This is a home page</p>
+    {
+      res.data.map((blog: any) => (
+        <div key={blog.id}>
+          <h2>Title:{blog.title}</h2>
+          <p>Content:{blog.content}</p>
+        </div>
+      ))
+    }
+    </>
+  ) : (
+    <UnderDevelopment />
+  )
 }
