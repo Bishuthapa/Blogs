@@ -4,8 +4,13 @@ import type { NextRequest } from "next/server";
 export function middleware(request: NextRequest) {
     const token = request.cookies.get("token")?.value;
 
+    if (request.nextUrl.pathname === '/') {
+        return NextResponse.redirect(new URL('/home', request.url));
+    }
+
+
     // Protected routes that require authentication
-    const protectedRoutes = ["/profile","/home"];
+    const protectedRoutes = ["/profile"];
     const isProtectedRoute = protectedRoutes.some(route =>
         request.nextUrl.pathname.startsWith(route)
     );
@@ -29,7 +34,10 @@ export function middleware(request: NextRequest) {
     }
 
     return NextResponse.next();
+
+    
 }
+
 
 export const config = {
     matcher: [
