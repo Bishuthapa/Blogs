@@ -17,9 +17,6 @@ export default function NavBar() {
           <Link href="/home" className="hover:underline hover:text-amber-700">
             Home
           </Link>
-          <Link href="/profile" className="hover:underline hover:text-amber-700">
-            Profile
-          </Link>
         </div>
         <ThemeToggle />
       </div>
