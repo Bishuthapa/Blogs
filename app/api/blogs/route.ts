@@ -1,7 +1,8 @@
 import { Blog } from "@/core/models/Blog.model"
+import { User } from "@/core/models/User.model"
 import { NextResponse } from "next/server"
 import { IBlog, creatBlog } from "@/types";
-import { ObjectId } from "mongodb";
+import mongoose from "mongoose";
 import connectDB from "@/lib/db";
 
 export async function GET(): Promise<NextResponse<IBlog[] | { error: string }>> {
@@ -51,39 +52,44 @@ export async function GET(): Promise<NextResponse<IBlog[] | { error: string }>> 
 }
 
 export async function POST(request: Request): Promise<NextResponse<IBlog | { error: string }>> {
-
     try {
-
         const body: creatBlog = await request.json();
 
-        if (!body.title && !body.author && !body.content) {
+        if (!body.title?.trim() || !body.author?.trim() || !body.content?.trim()) {
             return NextResponse.json(
-                { error: `Title, content, author are required` },
-                {
-                    status: 400
-                }
+                { error: "Title, author, and content are required." },
+                { status: 400 }
+            );
+        }
+
+        if (!mongoose.Types.ObjectId.isValid(body.author)) {
+            return NextResponse.json(
+                { error: "Author must be a valid user ID." },
+                { status: 400 }
             );
         }
 
         await connectDB();
-        const result: IBlog = await Blog.create({
-            _id: new ObjectId(),
-            title: body.title,
-            author: body.author,
-            content: body.content,
-            tags: body.tags,
+
+        const user = await User.findById(body.author);
+        if (!user) {
+            return NextResponse.json(
+                { error: "User not found. Use a valid user ID." },
+                { status: 404 }
+            );
+        }
+
+        const result = await Blog.create({
+            title: body.title.trim(),
+            author: new mongoose.Types.ObjectId(body.author),
+            content: body.content.trim(),
+            tags: Array.isArray(body.tags) ? body.tags : [],
             published: true,
         });
-        return NextResponse.json(result, {
-            status: 201
-        });
-    }
-    catch (e) {
-        return NextResponse.json({ error: "error", e },
-            {
-                status: 500
-            }
-        )
 
+        return NextResponse.json(result as IBlog, { status: 201 });
+    } catch (e) {
+        const message = e instanceof Error ? e.message : "Failed to create blog";
+        return NextResponse.json({ error: message }, { status: 500 });
     }
 }
