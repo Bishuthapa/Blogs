@@ -6,7 +6,7 @@ export function middleware(request: NextRequest) {
     const token = request.cookies.get("token")?.value;
 
     // Protected routes that require authentication
-    const protectedRoutes = ["/profile"];
+    const protectedRoutes = ["/create-blog"];
     const isProtectedRoute = protectedRoutes.some(route =>
         request.nextUrl.pathname.startsWith(route)
     );
@@ -26,7 +26,7 @@ export function middleware(request: NextRequest) {
 
     // If accessing auth routes with token, redirect to profile
     if (isAuthRoute && token) {
-        return NextResponse.redirect(new URL("/profile", request.url));
+        return NextResponse.redirect(new URL("/", request.url));
     }
 
     return NextResponse.next();
