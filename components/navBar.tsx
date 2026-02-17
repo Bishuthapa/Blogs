@@ -14,8 +14,11 @@ export default function NavBar() {
           MyBlog
         </Link>
         <div className="flex items-center gap-4">
-          <Link href="/home" className="hover:underline hover:text-amber-700">
+          <Link href="/" className="hover:underline hover:text-amber-700">
             Home
+          </Link>
+          <Link href="/blog/create-blog" className="hover:underline hover:text-amber-700">
+            Create
           </Link>
         </div>
         <ThemeToggle />

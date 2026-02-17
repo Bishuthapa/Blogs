@@ -2,9 +2,10 @@ import UnderDevelopment from "@/components/under-construction";
 import axios from "axios";
 import Link from "next/link";
 
-export default async function Home() {
-  const isLive = true;
-  const res = await axios.get("http://localhost:3000/api/blogs");
+export default async function One() {
+  const isLive = false;
+  const res = await axios.get(`http://localhost:3000/api/blogs/${id}`);
+  
 
   return isLive ? (
     <div className="min-h-screen  ">
@@ -14,7 +15,6 @@ export default async function Home() {
 
       <main className="max-w-6xl mx-auto px-4 pb-16 sm:px-6 lg:px-8">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {res.data.map((blog: any) => (
             <article
               key={blog._id}
               className="group relative rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border"
@@ -31,7 +31,7 @@ export default async function Home() {
                     {blog.author.name?.[0] || 'A'}
                   </div>
                   <span className="text-sm ">
-                    {blog.author.username || blog.author._id}
+                    {blog.author.username}
                   </span>
                 </div>
                 <div className="flex items-center gap-4 text-xs  mb-4">
@@ -66,7 +66,6 @@ export default async function Home() {
                 </div>
               </div>
             </article>
-          ))}
         </div>
       </main>
     </div>
