@@ -54,7 +54,7 @@ export default async function Home() {
 
                 
                 <div className="flex items-center font-medium text-sm group-hover:gap-2 transition-all">
-                  <Link href={`/blog/${blog.slug}`} className="hover:underline hover:text-amber-700">Read more </Link>
+                  <Link href={`/blog/${blog._id}`} className="hover:underline hover:text-amber-700">Read more </Link>
                   <svg
                     className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"
                     fill="none"
