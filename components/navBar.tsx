@@ -8,13 +8,13 @@ export default function NavBar() {
     <nav>
       <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 text-base">
         <Link
-          href="/"
+          href="/blog"
           className="font-semibold tracking-wide hover:opacity-80 hover:text-amber-700"
         >
           MyBlog
         </Link>
         <div className="flex items-center gap-4">
-          <Link href="/" className="hover:underline hover:text-amber-700">
+          <Link href="/blog" className="hover:underline hover:text-amber-700">
             Home
           </Link>
           <Link href="/blog/create-blog" className="hover:underline hover:text-amber-700">
