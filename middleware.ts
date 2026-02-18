@@ -24,7 +24,7 @@ export function middleware(request: NextRequest) {
         return NextResponse.redirect(loginUrl);
     }
 
-    // If accessing auth routes with token, redirect to profile
+    // If accessing auth routes with token, redirect to blog
     if (isAuthRoute && token) {
         return NextResponse.redirect(new URL("/blog", request.url));
     }

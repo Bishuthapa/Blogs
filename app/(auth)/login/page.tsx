@@ -5,12 +5,12 @@ import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { LoginSchema } from "@/validators/loginSchema";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 
 export default function Login() {
-
     const router = useRouter();
+    const searchParams = useSearchParams();
     const [data, setData] = useState({
         email: "",
         password: "",
@@ -35,7 +35,8 @@ export default function Login() {
             toast.success("Login successfully");
 
             setTimeout(() => {
-                router.push("/profile")
+                const redirectTo = searchParams.get("redirect") || "/blog";
+                router.push(redirectTo);
             }, 1500);
         } catch (error) {
             if (axios.isAxiosError(error)) {
