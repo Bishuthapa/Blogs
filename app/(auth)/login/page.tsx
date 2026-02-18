@@ -1,14 +1,13 @@
 "use client";
 
-import React from "react";
-import { useState } from "react";
+import React, { Suspense, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { LoginSchema } from "@/validators/loginSchema";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 
-export default function Login() {
+function LoginForm() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const [data, setData] = useState({
@@ -123,4 +122,23 @@ export default function Login() {
                 </div>
             </div>
         );
+}
+
+export default function Login() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen flex items-center justify-center">
+                <div className="max-w-md w-full rounded-lg shadow-md p-8 animate-pulse">
+                    <div className="h-9 bg-gray-200 rounded mb-8" />
+                    <div className="space-y-6">
+                        <div className="h-10 bg-gray-200 rounded" />
+                        <div className="h-10 bg-gray-200 rounded" />
+                        <div className="h-10 bg-gray-200 rounded" />
+                    </div>
+                </div>
+            </div>
+        }>
+            <LoginForm />
+        </Suspense>
+    );
 }
