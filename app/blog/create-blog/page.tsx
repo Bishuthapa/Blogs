@@ -28,7 +28,7 @@ export default function Blog() {
         setLoading(true);
 
         try {
-            const res = await axios.post("/api/blogs", {
+             await axios.post("/api/blogs", {
                 title: data.title.trim(),
                 tags: data.tags
                     .split(",")
