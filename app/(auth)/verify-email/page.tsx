@@ -1,6 +1,7 @@
+"use client";
+
 export const dynamic = "force-dynamic";
 
-"use client";
 
 import axios from "axios";
 import Link from "next/link";
