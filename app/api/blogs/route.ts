@@ -4,40 +4,12 @@ import { NextResponse } from "next/server"
 import { IBlog, creatBlog } from "@/types";
 import mongoose from "mongoose";
 import connectDB from "@/lib/db";
+import { getBlogs } from "@/lib/get-blogs";
 import jwt from "jsonwebtoken";
 
 export async function GET(): Promise<NextResponse<IBlog[] | { error: string }>> {
     try {
-        await connectDB();
-
-        const blogs = await Blog.aggregate([
-            { $sort: { createdAt: -1 } },
-            {
-                $lookup: {
-                    from: "users",
-                    localField: "author",
-                    foreignField: "_id",
-                    as: "authorDoc",
-                },
-            },
-            { $unwind: { path: "$authorDoc", preserveNullAndEmptyArrays: true } },
-            {
-                $project: {
-                    _id: 1,
-                    title: 1,
-                    content: 1,
-                    tags: 1,
-                    published: 1,
-                    createdAt: 1,
-                    updatedAt: 1,
-                    author: {
-                        _id: "$author",
-                        username: "$authorDoc.username",
-                        avatar: "$authorDoc.avatar",
-                    },
-                },
-            },
-        ]);
+        const blogs = await getBlogs();
 
         if (!blogs || blogs.length === 0) {
             return NextResponse.json([], { status: 200 });
