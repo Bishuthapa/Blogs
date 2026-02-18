@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default async function Home() {
   const isLive = true;
-  const res = await axios.get("/api/blogs");
+  const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/blogs`);
 
   return isLive ? (
     <div className="min-h-screen  ">
