@@ -1,16 +1,18 @@
 import UnderDevelopment from "@/components/under-construction";
-import axios from "axios";
 import Link from "next/link";
-
-const getBaseUrl = () =>
-  process.env.NEXT_PUBLIC_BASE_URL ||
-  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+import { getBlogs } from "@/lib/get-blogs";
 
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
   const isLive = true;
-  const res = await axios.get(`${getBaseUrl()}/api/blogs`);
+
+  let blogs: Awaited<ReturnType<typeof getBlogs>> = [];
+  try {
+    blogs = await getBlogs();
+  } catch (e) {
+    console.error("Failed to fetch blogs:", e);
+  }
 
   return isLive ? (
     <div className="min-h-screen  ">
@@ -20,7 +22,7 @@ export default async function Home() {
 
       <main className="max-w-6xl mx-auto px-4 pb-16 sm:px-6 lg:px-8">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {res.data.map((blog: any) => (
+          {blogs.map((blog: any) => (
             <article
               key={blog._id}
               className="group relative rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border"
