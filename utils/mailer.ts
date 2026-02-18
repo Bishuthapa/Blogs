@@ -40,8 +40,8 @@ export const sendEmail = async({
         })
     }
 
-      if (!process.env.MAILTRAP_TOKEN || !process.env.MAILTRAP_PASS) {
-            throw new Error("MAILTRAP_API_KEY not defined");
+      if (!process.env.MAILTRAP_USER || !process.env.MAILTRAP_PASS) {
+            throw new Error("MAILTRAP_USER or MAILTRAP_PASS is not defined");
         }
 
         const transport = nodemailer.createTransport({

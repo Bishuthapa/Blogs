@@ -2,9 +2,15 @@ import UnderDevelopment from "@/components/under-construction";
 import axios from "axios";
 import Link from "next/link";
 
+const getBaseUrl = () =>
+  process.env.NEXT_PUBLIC_BASE_URL ||
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const isLive = true;
-  const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/blogs`);
+  const res = await axios.get(`${getBaseUrl()}/api/blogs`);
 
   return isLive ? (
     <div className="min-h-screen  ">
