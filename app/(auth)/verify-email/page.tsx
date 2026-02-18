@@ -59,7 +59,6 @@ export const dynamic = "force-dynamic"; // Render dynamically, not statically
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import axios from "axios";
-import Link from "next/link";
 
 function VerifyContent() {
   const searchParams = useSearchParams();
