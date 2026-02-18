@@ -34,8 +34,8 @@ function LoginForm() {
             toast.success("Login successfully");
 
             setTimeout(() => {
-                const redirectTo = searchParams.get("redirect") || "/blog";
-                router.push(redirectTo);
+                //const redirectTo = searchParams.get("redirect") || "/blog";
+                router.push("/blog");
             }, 1500);
         } catch (error) {
             if (axios.isAxiosError(error)) {
