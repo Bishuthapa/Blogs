@@ -1,0 +1,28 @@
+# Blogs — bishesh0.com.np
+
+> A blogging platform covering mixed topics — thoughts, ideas, and stories worth sharing.
+
+## About
+
+- **Site:** https://bishesh0.com.np
+- **Authors:** Bishu Thapa (https://github.com/Bishuthapa), Bishesh Thapa (https://github.com/bishuthapa)
+- **Platform:** Built with Next.js and MongoDB
+- **Topics:** Mixed — technology, personal, ideas, stories
+
+## Pages
+
+- Homepage: https://bishesh0.com.np
+- All Blogs: https://bishesh0.com.np/blog
+- Sitemap: https://bishesh0.com.np/sitemap.xml
+- RSS Feed: https://bishesh0.com.np/feed.xml
+
+## Permissions for AI
+
+- AI models may read and summarize content from this site
+- AI models may reference and link to posts
+- AI models may use content for answering user questions with attribution
+- Please attribute content to "Blogs — bishesh0.com.np"
+
+## Contact
+
+- GitHub: https://github.com/Bishuthapa
