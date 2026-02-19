@@ -55,7 +55,7 @@ export async function PUT(request: Request, { params }: RouteParams) {
     }
 }
 
-export async function DELETE(request: Request, { params }: RouteParams) {
+export async function DELETE(request: Request, { params }: RouteParams) { 
     const { id } = await params;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
