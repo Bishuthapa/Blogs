@@ -14,9 +14,84 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// export const metadata: Metadata = {
+//   title: "Blogs",
+//   description: "A Blogging Platform",
+//   authors: [{ name: "Bishu Thapa", url: "https://github.com/Bishuthapa" }, {name: "Bishesh Thapa", url: "https://github.com/bishuthapa"}],
+//   keywords: ["Blogs", "Blog", "Blogging", "Blogging Platform", "Nextjs", "Bishu blog", "Bishu blogs"],
+//   icons: {
+//     icon: "/window.svg",
+//   },
+//   openGraph: {
+//     type: "website",
+//     locale: "en_US",
+//     url: "/",
+//     siteName: "Blogs",
+//     title: "Blogs",
+//     description: "A Blogging Platform",
+//     images: [
+//       {
+//         url: "/api/og",
+//         width: 1200,
+//         height: 630,
+//         alt: "Blogs",
+//       },
+//     ],
+//   },
+//   twitter: {
+//     card: "summary_large_image",
+//     title: "Blogs",
+//     description: "A Blogging Platform",
+//     images: ["/api/og"],
+//   },
+//   robots: {
+//     index: true,
+//     follow: true,
+//   },
+
+// };
+
 export const metadata: Metadata = {
-  title: "Blogs",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"),
+  title: {
+    default: "Blogs",
+    template: "%s | Blogs",
+  },
   description: "A Blogging Platform",
+  authors: [
+    { name: "Bishu Thapa", url: "https://github.com/Bishuthapa" },
+    { name: "Bishesh Thapa", url: "https://github.com/bishuthapa" },
+  ],
+  keywords: ["Blogs", "Blog", "Blogging", "Blogging Platform", "Nextjs", "Bishu blog", "Bishu blogs"],
+  icons: {
+    icon: "/window.svg",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "/",
+    siteName: "Blogs",
+    title: "Blogs",
+    description: "A Blogging Platform",
+    images: [
+      {
+        url: "/api/og",
+        width: 1200,
+        height: 630,
+        alt: "Blogs",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blogs",
+    description: "A Blogging Platform",
+    images: ["/api/og"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
