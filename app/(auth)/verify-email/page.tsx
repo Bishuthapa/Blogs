@@ -53,8 +53,8 @@
 //   );
 // }
 
-"use client";                       // MUST be first line
-export const dynamic = "force-dynamic"; // Render dynamically, not statically
+"use client";
+export const dynamic = "force-dynamic"; 
 
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
@@ -62,13 +62,12 @@ import axios from "axios";
 
 function VerifyContent() {
   const searchParams = useSearchParams();
-  const token = searchParams.get("token"); // get token from URL
+  const token = searchParams.get("token"); 
 
   const [status, setStatus] = useState("Verifying...");
 
   useEffect(() => {
     if (token) {
-      // Example: call your API to verify email
       axios.post("/api/auth/verify-email", { token })
         .then(() => setStatus("Email verified successfully!"))
         .catch(() => setStatus("Verification failed."));

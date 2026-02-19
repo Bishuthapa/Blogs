@@ -4,10 +4,8 @@ import {  updateBlog } from "@/types";
 import connectDB from "@/lib/db";
 import mongoose from "mongoose";
 
-// Define the shape of the params for Next.js 15+
 type RouteParams = { params: Promise<{ id: string }> };
 
-// --- GET: Fetch Single Blog ---
 export async function GET(request: Request, { params }: RouteParams) {
     const { id } = await params;
 
@@ -18,7 +16,6 @@ export async function GET(request: Request, { params }: RouteParams) {
     try {
         await connectDB();
         
-        // .findById() returns a single object, NOT an array.
         const blog = await Blog.findById(id);
 
         if (!blog) {
@@ -31,7 +28,6 @@ export async function GET(request: Request, { params }: RouteParams) {
     }
 }
 
-// --- PUT: Update Single Blog ---
 export async function PUT(request: Request, { params }: RouteParams) {
     const { id } = await params;
 
@@ -59,7 +55,6 @@ export async function PUT(request: Request, { params }: RouteParams) {
     }
 }
 
-// --- DELETE: Remove Single Blog ---
 export async function DELETE(request: Request, { params }: RouteParams) {
     const { id } = await params;
 

@@ -28,7 +28,6 @@ export async function POST(request: Request): Promise<NextResponse<IBlog | { err
     try {
         await connectDB();
         
-        // ✅ Read cookie from request headers
         const cookieHeader = request.headers.get("cookie");
         console.log("🍪 Cookie header received:", cookieHeader ? "YES" : "NO");
         
@@ -38,16 +37,16 @@ export async function POST(request: Request): Promise<NextResponse<IBlog | { err
             ?.split("=")[1];
 
         if (!token) {
-            console.log("❌ No token found in cookies");
+            console.log(" No token found in cookies");
             return NextResponse.json(
                 { error: "Unauthorized. Please login first." },
                 { status: 401 }
             );
         }
 
-        console.log("✅ Token found");
+        console.log("Token found");
 
-        // ✅ Verify JWT token
+        //  Verify JWT token
         let decodedToken;
         try {
             if (!process.env.TOKEN_SECRET) {
@@ -59,37 +58,37 @@ export async function POST(request: Request): Promise<NextResponse<IBlog | { err
                 process.env.TOKEN_SECRET
             ) as { id: string };
             
-            console.log("✅ Token decoded successfully, user ID:", decodedToken.id);
+            console.log("Token decoded successfully, user ID:", decodedToken.id);
         } catch (jwtError) {
-            console.error("❌ JWT verification failed:", jwtError);
+            console.error(" JWT verification failed:", jwtError);
             return NextResponse.json(
                 { error: "Invalid or expired token. Please login again." },
                 { status: 401 }
             );
         }
 
-        // ✅ Validate ObjectId format
+        //  Validate ObjectId format
         if (!mongoose.Types.ObjectId.isValid(decodedToken.id)) {
-            console.error("❌ Invalid ObjectId format:", decodedToken.id);
+            console.error(" Invalid ObjectId format:", decodedToken.id);
             return NextResponse.json(
                 { error: "Invalid user ID format" },
                 { status: 400 }
             );
         }
 
-        // ✅ Find user in database
+        //  Find user in database
         const user = await User.findById(decodedToken.id);
         if (!user) {
-            console.error("❌ User not found with ID:", decodedToken.id);
+            console.error(" User not found with ID:", decodedToken.id);
             return NextResponse.json(
                 { error: "User not found. Please login again." },
                 { status: 404 }
             );
         }
 
-        console.log("✅ User authenticated:", user.username);
+        console.log(" User authenticated:", user.username);
 
-        // ✅ Parse and validate request body
+        //  Parse and validate request body
         const body: creatBlog = await request.json();
 
         if (!body.title?.trim() || !body.content?.trim()) {
@@ -99,7 +98,7 @@ export async function POST(request: Request): Promise<NextResponse<IBlog | { err
             );
         }
 
-        // ✅ Create blog post
+        //  Create blog post
         const result = await Blog.create({
             title: body.title.trim(),
             author: user._id,
@@ -108,11 +107,11 @@ export async function POST(request: Request): Promise<NextResponse<IBlog | { err
             published:  true,
         });
 
-        console.log("✅ Blog created successfully! ID:", result._id);
+        console.log(" Blog created successfully! ID:", result._id);
 
         return NextResponse.json(result as IBlog, { status: 201 });
     } catch (e) {
-        console.error("❌ POST /api/blogs error:", e);
+        console.error(" POST /api/blogs error:", e);
         const message = e instanceof Error ? e.message : "Failed to create blog";
         return NextResponse.json({ error: message }, { status: 500 });
     }

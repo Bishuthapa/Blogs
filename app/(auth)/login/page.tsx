@@ -18,7 +18,7 @@ function LoginForm() {
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Zod validation
+        // zod validation
         const result = LoginSchema.safeParse(data);
         if (!result.success) {
             toast.error(result.error.issues[0].message);
