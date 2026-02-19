@@ -1,7 +1,6 @@
 import UnderDevelopment from "@/components/under-construction";
 import Link from "next/link";
 import { getBlogs } from "@/lib/get-blogs";
-import { creatBlog } from "@/types";
 
 export const dynamic = "force-dynamic";
 
