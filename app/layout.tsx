@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     default: "Blogs",
     template: "%s | Blogs",
   },
-  description: "A Blogging Platform",
+  description: "A blogging platform for sharing daily life moments and having fun.",
   authors: [
     { name: "Bishu Thapa", url: "https://github.com/Bishuthapa" },
     { name: "Bishesh Thapa", url: "https://github.com/bishuthapa" },
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "/",
-    siteName: "Blogs",
+    siteName: "Bishu Blogs",
     title: "Blogs",
     description: "A Blogging Platform",
     images: [
