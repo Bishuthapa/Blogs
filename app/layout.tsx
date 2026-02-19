@@ -66,6 +66,12 @@ export const metadata: Metadata = {
   icons: {
     icon: "/window.svg",
   },
+  alternates: {
+    canonical: "/",
+    types: {
+      "application/rss+xml": "https://bishesh0.com.np/feed.xml",
+    },
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
