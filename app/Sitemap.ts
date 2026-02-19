@@ -1,11 +1,17 @@
 // app/sitemap.ts
 import { MetadataRoute } from "next";
-import connectDB from "@/lib/db"; // your existing db connection
-import {Blog} from "@/core/models/Blog.model"; // your existing Blog model
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  await connectDB();
-  const blogs = await Blog.find({}, "_id updatedAt").lean();
+  let blogs = [];
+  
+  try {
+    const res = await fetch("https://blogs-lime-eight.vercel.app/api/blogs", { 
+      cache: "no-store" 
+    });
+    blogs = await res.json();
+  } catch {
+    blogs = [];
+  }
 
   const staticPages: MetadataRoute.Sitemap = [
     {
@@ -22,7 +28,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  const blogPages: MetadataRoute.Sitemap = blogs.map((blog) => ({
+  const blogPages: MetadataRoute.Sitemap = blogs.map((blog: { _id: string; updatedAt?: string }) => ({
     url: `https://bishesh0.com.np/blog/${blog._id}`,
     lastModified: blog.updatedAt ? new Date(blog.updatedAt) : new Date(),
     changeFrequency: "weekly",
