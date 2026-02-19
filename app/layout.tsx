@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     { name: "Bishu Thapa", url: "https://github.com/Bishuthapa" },
     { name: "Bishesh Thapa", url: "https://github.com/bishuthapa" },
   ],
-  keywords: ["Blogs", "Blog", "Blogging", "Blogging Platform", "Nextjs", "Bishu blog", "Bishu blogs", "Bishesh blog", "Bishesh blogs", "Nepal", "AI blogs"],
+  keywords: ["Bishuthapa blogs", "bishuthapa-blog","bishuthapa-blogs","Blogs", "Blog", "Blogging", "Blogging Platform", "Nextjs", "Bishu blog", "Bishu blogs", "Bishesh blog", "Bishesh blogs", "Nepal", "AI blogs"],
   icons: {
     icon: "/window.svg",
   },
