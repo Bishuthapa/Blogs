@@ -29,7 +29,7 @@ export async function POST(request: Request): Promise<NextResponse<IBlog | { err
         await connectDB();
         
         const cookieHeader = request.headers.get("cookie");
-        console.log("🍪 Cookie header received:", cookieHeader ? "YES" : "NO");
+        //console.log("Cookie header received:", cookieHeader ? "YES" : "NO");
         
         const token = cookieHeader
             ?.split("; ")
