@@ -11,10 +11,10 @@ export default function NavBar() {
           href="/blog"
           className="font-semibold tracking-wide hover:opacity-80 hover:text-amber-700"
         >
-          MyBlog
+          Blogs
         </Link>
         <div className="flex items-center gap-4">
-          <Link href="/blog" className="hover:underline hover:text-amber-700">
+          <Link href="/" className="hover:underline hover:text-amber-700">
             Home
           </Link>
           <Link href="/blog/create-blog" className="hover:underline hover:text-amber-700">
