@@ -42,9 +42,9 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
               </div>
               
               <div>
-                <p className="text-sm font-bold">
+                <Link href={`profile/${blog.author?._id}`} className="text-sm font-bold">
                   {typeof blog.author !== 'string' ? blog.author?.username : "Anonymous"}
-                </p>
+                </Link>
                 <div className="flex items-center gap-3 text-xs opacity-60 mt-0.5">
                   <span className="flex items-center gap-1">
                     <Calendar className="w-3.5 h-3.5" /> 

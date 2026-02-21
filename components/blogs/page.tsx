@@ -39,9 +39,10 @@ export default async function HomePage() {
                   <div className="w-8 h-8 rounded-fullflex items-center justify-center text-sm font-semibold">
                     {blog.author.name?.[0] || 'A'}
                   </div>
-                  <span className="text-sm ">
+                  <Link 
+                    href={`blog/profile/${blog.author._id}`} className="text-sm ">
                     {blog.author.username || blog.author._id}
-                  </span>
+                  </Link>
                 </div>
                 <div className="flex items-center gap-4 text-xs  mb-4">
                   <time>{new Date(blog.createdAt).toLocaleDateString()}</time>
