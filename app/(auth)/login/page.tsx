@@ -4,12 +4,12 @@ import React, { Suspense, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { LoginSchema } from "@/validators/loginSchema";
-import { useSearchParams } from "next/navigation";
+import { useRouter, /*useSearchParams*/ } from "next/navigation";
 import Link from "next/link";
 
 function LoginForm() {
-    //const router = useRouter();
-    const searchParams = useSearchParams();
+    const router = useRouter();
+    //const searchParams = useSearchParams();
     const [data, setData] = useState({
         email: "",
         password: "",
@@ -34,9 +34,8 @@ function LoginForm() {
             toast.success("Login successfully");
 
             setTimeout(() => {
-               // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-               searchParams.get("redirect") || "/blog";
-                //router.push("/blog");
+               // const redirectTo = searchParams.get("redirect") || "/blog";
+                router.push("/blog");
             }, 1500);
         } catch (error) {
             if (axios.isAxiosError(error)) {
