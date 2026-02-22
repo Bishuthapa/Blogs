@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import mongoose from "mongoose";
 import Link from "next/link";
 import { getUsersBlogs } from "@/lib/hora";
+import { BlogWithAuthor } from "@/types";
 export default async function Page({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
 
@@ -22,7 +23,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
 
                     <main className="max-w-6xl mx-auto px-4 pb-16 sm:px-6 lg:px-8">
                         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                            {blogs.map((blog: any) => (
+                            {blogs.map((blog: BlogWithAuthor) => (
                                 <article
                                     key={blog._id}
                                     className="group relative rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border"
@@ -36,7 +37,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
 
                                         <div className="flex items-center gap-2 mb-4">
                                             <div className="w-8 h-8 rounded-fullflex items-center justify-center text-sm font-semibold">
-                                                {blog.author.name?.[0] || 'A'}
+                                                {blog.author.username?.[0] || 'A'}
                                             </div>
                                             <span className="text-sm ">
                                                 {blog.author.username || blog.author._id}
