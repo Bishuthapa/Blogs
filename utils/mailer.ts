@@ -33,7 +33,7 @@ export const sendEmail = async ({
     await User.updateOne({ _id: userId }, { $set: updateFields });
 
     // 2️⃣ Construct the link
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
     const link =
       emailType === "verify"
         ? `${baseUrl}/verify-email?token=${rawToken}`
