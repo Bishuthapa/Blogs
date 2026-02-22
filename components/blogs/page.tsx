@@ -11,7 +11,7 @@ export default async function HomePage() {
   let blogs: Awaited<ReturnType<typeof getBlogs>> = [];
   try {
     blogs = await getBlogs();
-    console.log("blogs", blogs);
+    //console.log("blogs", blogs);
   } catch (e) {
     console.error("Failed to fetch blogs:", e);
   }
