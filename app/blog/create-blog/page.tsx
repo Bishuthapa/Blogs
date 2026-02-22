@@ -49,7 +49,7 @@ export default function Blog() {
                 published: false,
             });
 
-            route.push("/blog/create-blog") 
+            route.push("/blog") 
         } catch (err) {
             if (err instanceof Error)
                 console.log(err);
