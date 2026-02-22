@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import {  useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 export default function Blog() {
     const [data, setData] = useState({
@@ -49,7 +49,7 @@ export default function Blog() {
                 published: false,
             });
 
-            route.push("/blog");
+            route.push("/blog/create-blog") 
         } catch (err) {
             if (err instanceof Error)
                 console.log(err);
