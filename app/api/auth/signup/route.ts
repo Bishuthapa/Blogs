@@ -7,10 +7,11 @@ import { sendEmail } from "@/utils/mailer"
 
 
 
-connectDB();
+
 
 export async function POST(req : NextRequest){
     try{
+        await connectDB();
 
         const body = await req.json();
         const result = SignupSchema.safeParse(body);
