@@ -61,7 +61,9 @@ export async function POST(req : NextRequest){
                 userId : saveUser._id
             })
         }catch(emailError){
+            if(emailError instanceof Error){
             console.error("Email sending failed:", emailError);
+            }
         }
 
         return NextResponse.json({
