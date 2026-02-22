@@ -43,9 +43,9 @@ export interface IUser extends Document {
     isVerified : boolean,
     isAdmine: boolean,
     forgetPasswordToken: string,
-    forgetPasswordTokenExpiry: Date,
+    forgetPasswordTokenExpiry: Date | number,
     verifyToken: string,
-    verifyTokenExpiry: Date,
+    verifyTokenExpiry: Date | number,
     createdAt : Date,
     updatedAt? : Date,
 }

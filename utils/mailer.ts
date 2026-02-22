@@ -3,7 +3,7 @@ import crypto from "crypto";
 import nodemailer from "nodemailer";
 import { MailtrapTransport } from "mailtrap";
 import { SendEmailParams } from "@/types";
-
+import { IUser } from "@/types";
 const transport = nodemailer.createTransport(
   MailtrapTransport({
     token: process.env.MAILTRAP_TOKEN!,
@@ -19,8 +19,8 @@ export const sendEmail = async ({
     const rawToken = crypto.randomBytes(32).toString("hex");
     const hashedToken = crypto.createHash("sha256").update(rawToken).digest("hex");
 
-    // 1️⃣ Update DB first
-    const updateFields: any = {};
+    
+    const updateFields: Partial<IUser> = {};
     if (emailType === "verify") {
       updateFields.verifyToken = hashedToken;
       updateFields.verifyTokenExpiry = Date.now() + 3600000;
