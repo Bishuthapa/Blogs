@@ -23,8 +23,10 @@ export async function GET(request: Request, { params }: RouteParams) {
         }
 
         return NextResponse.json(blog, { status: 200 });
-    } catch (error: any) {
+    } catch (error ) {
+        if(error instanceof Error){
         return NextResponse.json({ error: "Server error", details: error.message }, { status: 500 });
+        }
     }
 }
 
@@ -50,8 +52,10 @@ export async function PUT(request: Request, { params }: RouteParams) {
         }
 
         return NextResponse.json(updatedBlog, { status: 200 });
-    } catch (error: any) {
+    } catch (error) {
+        if(error instanceof Error){
         return NextResponse.json({ error: "Update failed", details: error.message }, { status: 500 });
+        }
     }
 }
 
@@ -71,7 +75,9 @@ export async function DELETE(request: Request, { params }: RouteParams) {
         }
 
         return NextResponse.json({ message: "Blog deleted successfully" }, { status: 200 });
-    } catch (error: any) {
+    } catch (error) {
+        if(error instanceof Error){
         return NextResponse.json({ error: "Deletion failed", details: error.message }, { status: 500 });
+        }
     }
 }
