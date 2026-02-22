@@ -3,7 +3,7 @@ import "@/core/models/User.model";
 import connectDB from "@/lib/db";
 import mongoose from "mongoose";
 
-export async function getUsersBlogs({id}:any) {
+export async function getUsersBlogs({id}: { id: string}) {
   await connectDB();
 
   const blogs = await Blog.aggregate([

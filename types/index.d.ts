@@ -10,6 +10,19 @@ export interface IBlog extends Document {
     updatedAt : Date
 }
 
+export type BlogWithAuthor = {
+  _id: string;
+  title: string;
+  content: string;
+  tags: string[];
+  published: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  author: {
+    _id: string;
+    username: string;
+  };
+};
 
 export interface creatBlog {
     title: string,
