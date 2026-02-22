@@ -4,12 +4,12 @@ import React, { Suspense, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { LoginSchema } from "@/validators/loginSchema";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter, /*useSearchParams*/ } from "next/navigation";
 import Link from "next/link";
 
 function LoginForm() {
     const router = useRouter();
-    const searchParams = useSearchParams();
+    //const searchParams = useSearchParams();
     const [data, setData] = useState({
         email: "",
         password: "",
