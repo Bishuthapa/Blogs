@@ -27,7 +27,7 @@ export default async function HomePage() {
           {blogs.map((blog : BlogWithAuthor) => (
             <article
               key={blog._id}
-              className="group relative rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border"
+              className="group relative rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border  border-amber-600"
             >
               <div className="absolute top-0 left-0 right-0 h-1  opacity-0 group-hover:opacity-100 transition-opacity" />
 
@@ -37,8 +37,8 @@ export default async function HomePage() {
                 </h2>
 
                 <div className="flex items-center gap-2 mb-4">
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold">
-                    {blog.author.username?.[0] || 'A'}
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold text-amber-600 border border-amber-600">
+                    {blog.author.username?.[0].toUpperCase() || 'A'}
                   </div>
                   <Link 
                     href={`blog/profile/${blog.author._id}`} className="text-sm ">

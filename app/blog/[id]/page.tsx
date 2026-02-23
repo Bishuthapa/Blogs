@@ -37,7 +37,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
 
             <div className="flex items-center gap-4">
               {/* Avatar Placeholder */}
-              <div className="h-12 w-12 rounded-full border flex items-center justify-center text-lg font-bold shadow-sm">
+              <div className="h-12 w-12 rounded-full border flex items-center justify-center text-lg font-bold shadow-sm border-amber-600">
                 {typeof blog.author !== 'string' && blog.author?.username ? blog.author.username[0].toUpperCase() : 'A'}
               </div>
               
